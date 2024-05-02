@@ -17,14 +17,6 @@ jobs:
         with:
           browser: chrome
 
-  # cypress-run-ubuntu:
-  #   runs-on: ubuntu-22.04
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #     - name: Cypress run
-  #       uses: cypress-io/github-action@v6
-
   scheduled-cypress-run-windows:
     runs-on: windows-latest
     if: github.event_name == 'schedule' # run only scheduled 
