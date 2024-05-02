@@ -22,7 +22,7 @@ module.exports = defineConfig({
         // Enable upload to Argos only when it runs on CI.
         uploadToArgos: !!process.env.CI,
         // Set your Argos token (required only if you don't use GitHub Actions).
-        token: "484c5e6a6b06b54ff512796d10cb47ef1c02cca7",
+        token: "7f5b38da220eeccf5d8c12dde30696671e59c012",
       });
 
       // include any other plugin code...
