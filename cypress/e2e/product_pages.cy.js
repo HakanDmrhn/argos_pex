@@ -10,9 +10,12 @@ describe('Integration test with visual testing - product pages', function () {
         it('load page: ' + link + ' & take argos snapshot', function () {
             cy.visit(link);
 
-            cy.window().then(cyWindow => scrollToBottom({ frequency: 150, timing: 20, remoteWindow: cyWindow }));
-            cy.scrollTo('top', { duration: 500, ensureScrollable: false })
+            cy.window().then(cyWindow => scrollToBottom({ frequency: 150, timing: 30, remoteWindow: cyWindow }));
+            cy.scrollTo('top', { duration: 1000, ensureScrollable: false })
+
+            cy.checkYouTube()
             cy.checkFreshChat()
+
             cy.argosScreenshot(link, {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6

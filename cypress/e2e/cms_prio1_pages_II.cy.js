@@ -11,8 +11,8 @@ describe('Integration test with visual testing - cms prio1 pages without freshch
 
             cy.visit(link);
 
-            cy.window().then(cyWindow => scrollToBottom({ frequency: 150, timing: 20, remoteWindow: cyWindow }));
-            cy.scrollTo('top', { duration: 500, ensureScrollable: false })
+            cy.window().then(cyWindow => scrollToBottom({ frequency: 150, timing: 30, remoteWindow: cyWindow }));
+            cy.scrollTo('top', { duration: 1000, ensureScrollable: false })
 
             cy.argosScreenshot(link, {
                 viewports: [

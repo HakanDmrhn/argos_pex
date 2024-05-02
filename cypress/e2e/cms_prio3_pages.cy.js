@@ -12,9 +12,10 @@ describe('Integration test with visual testing - cms prio3 pages', function () {
 
             cy.visit(link);
 
-            cy.window().then(cyWindow => scrollToBottom({ frequency: 100, timing: 20, remoteWindow: cyWindow }));
-            cy.scrollTo('top', { duration: 500, ensureScrollable: false })
+            cy.window().then(cyWindow => scrollToBottom({ frequency: 100, timing: 30, remoteWindow: cyWindow }));
+            cy.scrollTo('top', { duration: 1000, ensureScrollable: false })
 
+            cy.checkYouTube()
             cy.checkFreshChat()
 
             cy.argosScreenshot(link, {

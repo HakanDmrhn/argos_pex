@@ -58,6 +58,24 @@ Cypress.Commands.add('checkFreshChat', () => {
   })
 })
 
+//custom command to check visibility of youtube videos
+Cypress.Commands.add('checkYouTube', () => {
+  // cy.get('freshchat-widget').shadow().find('#fc-widget-chat-icon').should('be.visible') // nach PEX-4301 icon mit cypress getestet fehlend 
+  // cy.get('iframe#fc_widget', { timeout: 10000 }).should('be.visible', { timeout: 10000 })
+
+  cy.get('body').then(($body) => {
+    if ($body.find('.r-video').length) {
+      // iframe was found
+      cy.log('YOUTUBE VIDEO FOUND')
+      cy.get('.r-video').invoke('attr', 'data-visual-test', 'transparent');
+    }
+    else {
+      cy.log('YOUTUBE VIDEO FOUND')
+    }
+
+  })
+})
+
 //custom command to open a selectbox
 Cypress.Commands.add('openSelect', { prevSubject: 'element' }, (subject, method) => {
   const dropdown = subject[0];

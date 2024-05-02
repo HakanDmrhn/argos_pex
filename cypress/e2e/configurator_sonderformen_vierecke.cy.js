@@ -7,11 +7,18 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
         //load PDP page
         cy.visit('/cremona-1093');
         //load js files
-        cy.wait('@configurator-js-files')
+        // cy.wait('@configurator-js-files')
+        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+
+
         //scroll to bottom with npm package to be sure that alls ressources are loaded
         cy.window().then(cyWindow => scrollToBottom({ remoteWindow: cyWindow }));
+
+
         //check if main image is visible
         cy.get('#image').should('be.visible')
+
+        
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
             .should('have.length', 8)
@@ -21,7 +28,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
                 })
             })
 
-        // check if FreshChat icon is loaded
+        // check if FreshChat icon is visible
         cy.checkFreshChat()
 
         //Auswahl Tab Sonderformen
@@ -92,6 +99,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
         //select plissee types and make snapshot
         for (var i = 0; i < types.length; i++) {
             cy.get(types[i]).click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
+            cy.get(types[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Vierecke - Auswahl und Infobox: ' + types[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -126,8 +134,10 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
                     { width: 1280, height: 1024 }, // Specify dimensions directly
                 ]
             });
+
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
+            cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Vierecke Befestigung- Infobox: ' + befestigungen[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -161,6 +171,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
             });
             //capture info popup
             cy.get(schienenfarben[i]).siblings('.tooltip_icon').realHover()
+            cy.get(schienenfarben[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Vierecke - Infobox: Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -194,6 +205,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
 
         //capture info popup Bedienseite
         cy.contains(new RegExp("^" + 'Bedienseite' + "\\s*$")).next('.tooltip_icon').realHover()
+        cy.contains(new RegExp("^" + 'Bedienseite' + "\\s*$")).siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Sonderformen Vierecke - Infobox: Bedienseite', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -205,6 +217,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
 
         //capture info popup Pendelsicherung
         cy.contains(new RegExp("^" + 'Pendelsicherung' + "\\s*$")).next('.tooltip_icon').realHover()
+        cy.contains(new RegExp("^" + 'Pendelsicherung' + "\\s*$")).siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Sonderformen Vierecke - Infobox: Pendelsicherung', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6

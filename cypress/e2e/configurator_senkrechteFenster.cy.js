@@ -7,11 +7,18 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
         //load PDP page
         cy.visit('/liviano-4313');
         //load js files
-        cy.wait('@configurator-js-files')
+        // cy.wait('@configurator-js-files')
+        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+        
+        
         //scroll to bottom with npm package to be sure that alls ressources are loaded
         cy.window().then(cyWindow => scrollToBottom({ remoteWindow: cyWindow }));
+        
+        
         //check if main image is visible
         cy.get('#image').should('be.visible')
+        
+        
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
             .should('have.length', 8)
@@ -20,6 +27,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
                     cy.wrap($img).should('be.visible')
                 })
             })
+
         // check if FreshChat icon is loaded
         cy.checkFreshChat()
 
@@ -71,6 +79,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
         });
         //capture info popup
         cy.get('#vs1').siblings('.tooltip_icon').realHover()
+        cy.get('#vs1').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Senkrechte Fenster: VS1', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -90,6 +99,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
         });
         //capture info popup
         cy.get('#vs2').siblings('.tooltip_icon').realHover()
+        cy.get('#vs2').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Senkrechte Fenster: VS2', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -130,6 +140,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
             });
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
+            cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Senkrechte Fenster Befestigung- Infobox: ' + befestigungen[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -163,6 +174,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
             });
             //capture info popup
             cy.get(schienenfarben[i]).siblings('.tooltip_icon').realHover()
+            cy.get(schienenfarben[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Senkrechte Fenster - Infobox: Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -187,6 +199,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
         });
         //capture info popup
         cy.get('#standard').siblings('.tooltip_icon').realHover()
+        cy.get('#standard').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Senkrechte Fenster - Infobox: Bediengriffe Standard', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -206,6 +219,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
         });
         //capture info popup
         cy.get('#design').siblings('.tooltip_icon').realHover()
+        cy.get('#design').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Senkrechte Fenster - Infobox: Bediengriffe Design', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -226,8 +240,10 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
             ]
         });
         cy.get('#bedienstab_select').closeSelect();   //custom command in commands.js
+        
         //capture info popup
         cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.tooltip_icon').realHover()
+        cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Senkrechte Fenster - Infobox: Bedienstab', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6

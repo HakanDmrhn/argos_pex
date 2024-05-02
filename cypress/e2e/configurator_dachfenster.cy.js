@@ -8,11 +8,18 @@ describe('Integration test with visual testing - configurator Dachfenster', func
         //load PDP page
         cy.visit('/wabe-ultima-4804');
         //load js files
-        cy.wait('@configurator-js-files')
+        // cy.wait('@configurator-js-files')
+        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+
+
         //scroll to bottom with npm package to be sure that alls ressources are loaded
         cy.window().then(cyWindow => scrollToBottom({ remoteWindow: cyWindow }));
+
+
         //check if main image is visible
         cy.get('#image').should('be.visible')
+
+
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
             .should('have.length', 13)
@@ -21,6 +28,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
                     cy.wrap($img).should('be.visible')
                 })
             })
+
         // check if FreshChat icon is loaded
         cy.checkFreshChat()
 
@@ -77,6 +85,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
         });
         //capture info popup
         cy.get('#df20').siblings('.tooltip_icon').realHover()
+        cy.get('#df20').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: DF20', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -94,8 +103,10 @@ describe('Integration test with visual testing - configurator Dachfenster', func
                 { width: 1280, height: 1024 }, // Specify dimensions directly
             ]
         });
+
         //capture info popup
         cy.get('#df20c').siblings('.tooltip_icon').realHover()
+        cy.get('#df20c').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: DF20 Comfort', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -113,8 +124,10 @@ describe('Integration test with visual testing - configurator Dachfenster', func
                 { width: 1280, height: 1024 }, // Specify dimensions directly
             ]
         });
+
         //capture info popup
         cy.get('#df30c').siblings('.tooltip_icon').realHover()
+        cy.get('#df30c').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: DF30 Comfort', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -136,6 +149,8 @@ describe('Integration test with visual testing - configurator Dachfenster', func
             ]
         });
         cy.get('#df_hersteller_select').closeSelect();   //custom command in commands.js
+
+
         // Bedienstäbe
         cy.get('#bedienstab_select').openSelect();   //custom command in commands.js
         cy.argosScreenshot('Genormte Dachfenster: Bedienstäbe', {
@@ -145,6 +160,8 @@ describe('Integration test with visual testing - configurator Dachfenster', func
             ]
         });
         cy.get('#bedienstab_select').closeSelect();   //custom command in commands.js
+
+
         // untere Stoffe
         cy.get('#unterer_stoff_gruppe_select').openSelect();   //custom command in commands.js
         cy.argosScreenshot('Genormte Dachfenster: Untere Stoffe', {
@@ -168,6 +185,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
         //capture infoboxes of Bediengriff Standard and Design
         // --> Standard
         cy.get('#standard').siblings('.tooltip_icon').realHover()
+        cy.get('#standard').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: Bediengriff Standard', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -179,6 +197,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
 
         // --> Design
         cy.get('#design').siblings('.tooltip_icon').realHover()
+        cy.get('#design').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: Bediengriff Design', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -198,6 +217,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
         //capture infoboxes Schienenfarbe weiß and grau
         // --> weiß
         cy.get('#weiss').siblings('.tooltip_icon').realHover()
+        cy.get('#weiss').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: Schienenfarbe weiß', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -209,6 +229,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
 
         // --> grau
         cy.get('#grau').siblings('.tooltip_icon').realHover()
+        cy.get('#grau').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: Schienenfarbe grau', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -220,6 +241,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
 
         //capture bedienstab
         cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.tooltip_icon').realHover()
+        cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Infobox - Dachfenster: Bedienstab', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6

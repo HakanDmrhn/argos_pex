@@ -7,11 +7,19 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
         //load PDP page
         cy.visit('/perlissimo-5125');
         //load js files
-        cy.wait('@configurator-js-files')
+        // cy.wait('@configurator-js-files')
+        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+
+
+
         //scroll to bottom with npm package to be sure that alls ressources are loaded
         cy.window().then(cyWindow => scrollToBottom({ remoteWindow: cyWindow }));
+
+
         //check if main image is visible
         cy.get('#image').should('be.visible')
+
+
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
             .should('have.length', 11)
@@ -71,6 +79,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
 
         // select VS6        
         cy.get('#vs6').click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
+        cy.get('#vs6').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Sonderformen Sechsecke - Auswahl und Infobox: VS6', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -80,6 +89,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
 
         // select VSSD
         cy.get('#vs6sd').click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
+        cy.get('#vs6sd').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Sonderformen Sechsecke - Auswahl und Infobox: VS6SD', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -111,6 +121,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
             });
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
+            cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Sechsecke Befestigung- Infobox: ' + befestigungen[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -144,6 +155,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
             });
             //capture info popup
             cy.get(schienenfarben[i]).siblings('.tooltip_icon').realHover()
+            cy.get(schienenfarben[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Sechsecke - Infobox: Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -166,6 +178,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
         });
         //capture info popup
         cy.get('#standard').siblings('.tooltip_icon').realHover()
+        cy.get('#standard').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Sonderformen Sechsecke - Infobox: Bediengriffe Standard', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -185,6 +198,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
         });
         //capture info popup
         cy.get('#design').siblings('.tooltip_icon').realHover()
+        cy.get('#design').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Sonderformen Sechsecke - Infobox: Bediengriffe Design', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
@@ -207,6 +221,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Sec
         cy.get('#bedienstab_select').closeSelect();   //custom command in commands.js
         //capture info popup
         cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.tooltip_icon').realHover()
+        cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.option_item_tooltip').children('img').should('be.visible')
         cy.argosScreenshot('Sonderformen Sechsecke - Infobox: Bedienstab', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6

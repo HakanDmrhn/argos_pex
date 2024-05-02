@@ -7,11 +7,18 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
         //load PDP page
         cy.visit('/blackout-4018');
         //load js files
-        cy.wait('@configurator-js-files')
+        // cy.wait('@configurator-js-files')
+        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+
+
         //scroll to bottom with npm package to make sure that alls ressources are loaded
         cy.window().then(cyWindow => scrollToBottom({ remoteWindow: cyWindow }));
+        
+        
         //check if main image is visible
         cy.get('#image').should('be.visible')
+        
+        
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
             .should('have.length', 7)
@@ -84,6 +91,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
         //select plissee types and make snapshot
         for (var i = 0; i < types.length; i++) {
             cy.get(types[i]).click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
+            cy.get(types[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Dreiecke - Auswahl und Infobox: ' + types[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -124,6 +132,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
             });
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
+            cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Dreiecke Befestigung- Infobox: ' + befestigungen[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
@@ -157,6 +166,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
             });
             //capture info popup
             cy.get(schienenfarben[i]).siblings('.tooltip_icon').realHover()
+            cy.get(schienenfarben[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
             cy.argosScreenshot('Sonderformen Dreiecke - Infobox: Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
