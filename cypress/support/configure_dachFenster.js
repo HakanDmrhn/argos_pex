@@ -8,7 +8,7 @@ module.exports = {
         
         //load configurator
         cy.visit('/turin-1051')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
 
         cy.contains('Dachfenster').click()
@@ -33,7 +33,8 @@ module.exports = {
 
         // load configurator
         cy.visit('/meran-1176')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
+        
 
         cy.contains('Dachfenster').click()
 

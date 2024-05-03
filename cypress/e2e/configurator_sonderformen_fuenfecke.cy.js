@@ -8,7 +8,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         cy.visit('/pearl-light-4555');
         //load js files
         // cy.wait('@configurator-js-files')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
 
 

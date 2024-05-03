@@ -7,8 +7,8 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         //load PDP page
         cy.visit('/perlissimo-4515');
         //load js files
-        cy.wait('@configurator-js-files')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+        // cy.wait('@configurator-js-files')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
 
         //scroll to bottom with npm package to be sure that alls ressources are loaded
@@ -128,8 +128,9 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         // select plk13 to make all befestigungen visible
         cy.get('#plk13').click({ force: true }).wait(500)
-
-        cy.get('h3').contains('Befestigungstyp').click()  //the only way to make the last f1-popup disappear
+        
+        cy.clearPopup()
+        cy.get('h3').contains('Befestigungstyp').click()  //the only way to make the last plk13-popup disappear
 
         //Befestigungen
         var befestigungen = [

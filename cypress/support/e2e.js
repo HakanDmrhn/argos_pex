@@ -60,9 +60,8 @@ Cypress.Commands.add('checkFreshChat', () => {
 
 //custom command to check visibility of youtube videos
 Cypress.Commands.add('checkYouTube', () => {
-  // cy.get('freshchat-widget').shadow().find('#fc-widget-chat-icon').should('be.visible') // nach PEX-4301 icon mit cypress getestet fehlend 
-  // cy.get('iframe#fc_widget', { timeout: 10000 }).should('be.visible', { timeout: 10000 })
 
+  // youtube-video css selector: .r-video
   cy.get('body').then(($body) => {
     if ($body.find('.r-video').length) {
       // iframe was found
@@ -72,8 +71,32 @@ Cypress.Commands.add('checkYouTube', () => {
     else {
       cy.log('YOUTUBE VIDEO FOUND')
     }
-
   })
+
+  // youtube-video css selector: .rvideo
+  cy.get('body').then(($body) => {
+    if ($body.find('.video').length) {
+      // iframe was found
+      cy.log('YOUTUBE VIDEO FOUND')
+      cy.get('.video').invoke('attr', 'data-visual-test', 'transparent');
+    }
+    else {
+      cy.log('YOUTUBE VIDEO FOUND')
+    }
+  })
+
+  // youtube-video css selector: #video
+  cy.get('body').then(($body) => {
+    if ($body.find('#video').length) {
+      // iframe was found
+      cy.log('YOUTUBE VIDEO FOUND')
+      cy.get('#video').invoke('attr', 'data-visual-test', 'transparent');
+    }
+    else {
+      cy.log('YOUTUBE VIDEO FOUND')
+    }
+  })
+
 })
 
 //custom command to open a selectbox

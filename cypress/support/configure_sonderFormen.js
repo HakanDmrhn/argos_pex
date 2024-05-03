@@ -7,7 +7,7 @@ module.exports = {
 
         // load product detail page
         cy.visit('/crush-topar-4614')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
         //Auswahl Tab Sonderformen
         cy.contains('Sonderformen').click()
@@ -38,7 +38,7 @@ module.exports = {
 
         // load product detail page
         cy.visit('/accento-1543')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
         //Auswahl Tab Sonderformen
         cy.contains('Sonderformen').click()
@@ -69,7 +69,7 @@ module.exports = {
 
         // load product detail page
         cy.visit('/lecce-4912')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
         //Auswahl Tab Sonderformen
         cy.contains('Sonderformen').click()
@@ -99,7 +99,7 @@ module.exports = {
 
         // load product detail page
         cy.visit('/crush-topar-4255')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
         
 
         //Auswahl Tab Sonderformen
@@ -129,7 +129,7 @@ module.exports = {
 
         // load product detail page
         cy.visit('/radiance-4876')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
         //Auswahl Tab Sonderformen
         cy.contains('Sonderformen').click()

@@ -8,7 +8,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
         cy.visit('/blackout-4018');
         //load js files
         // cy.wait('@configurator-js-files')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
 
         //scroll to bottom with npm package to make sure that alls ressources are loaded

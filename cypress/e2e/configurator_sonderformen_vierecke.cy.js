@@ -8,7 +8,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
         cy.visit('/cremona-1093');
         //load js files
         // cy.wait('@configurator-js-files')
-        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00')
+       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
 
         //scroll to bottom with npm package to be sure that alls ressources are loaded
@@ -138,7 +138,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Vie
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
             cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Vierecke Befestigung- Infobox: ' + befestigungen[i], {
+            cy.argosScreenshot('Sonderformen Vierecke Befestigung - Infobox: ' + befestigungen[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6
                     { width: 1280, height: 1024 }, // Specify dimensions directly
