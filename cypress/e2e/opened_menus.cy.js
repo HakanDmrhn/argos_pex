@@ -25,13 +25,15 @@ describe('Integration test with visual testing - opened menus', function () {
         //open menu 'Plissee nach Farben' and take argos snaphot
         cy.visit('/');
 
+        cy.checkFreshChat()
+        cy.checkYouTube()
+
         cy.get('.menu_level_two.menu_colors').then(($menuColors) => {
             $menuColors.css('display', 'grid');
         });
-        // cy.screenshot('colors')
-        // check if FreshChat icon is loaded
-        cy.checkFreshChat()
-        cy.argosScreenshot('opened menu: Plissee nach Farben', {
+
+
+        cy.argosScreenshot('opened menu - Plissee nach Farben', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -51,13 +53,14 @@ describe('Integration test with visual testing - opened menus', function () {
         //open menu 'Plissee für Räume' and take argos snaphot
         cy.visit('/');
 
+        cy.checkFreshChat()
+        cy.checkYouTube()
+
         cy.get('.menu_level_two.menu_rooms').then(($menuRooms) => {
             $menuRooms.css('display', 'grid');
         });
-        // cy.screenshot('rooms')
-        // check if FreshChat icon is loaded
-        cy.checkFreshChat()
-        cy.argosScreenshot('opened menu: Plissee für Räume', {
+
+        cy.argosScreenshot('opened menu - Plissee für Räume', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly

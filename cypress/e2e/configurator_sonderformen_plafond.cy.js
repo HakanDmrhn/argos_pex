@@ -8,17 +8,17 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         cy.visit('/perlissimo-4515');
         //load js files
         // cy.wait('@configurator-js-files')
-       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
+        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
 
         //scroll to bottom with npm package to be sure that alls ressources are loaded
         cy.window().then(cyWindow => scrollToBottom({ remoteWindow: cyWindow }));
-        
-        
+
+
         //check if main image is visible
         cy.get('#image').should('be.visible')
-       
-       
+
+
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
             .should('have.length', 12)
@@ -33,7 +33,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         //Auswahl Tab Sonderformen
         cy.contains('Sonderformen').click()
-        cy.argosScreenshot('Startseite: Sonderformen Perlissimo-4515', {
+        cy.argosScreenshot('Startseite Sonderformen Perlissimo-4515', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -60,8 +60,8 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
             cy.get('img[title=' + attributes[i] + ']').trigger('mouseover')
             cy.argosScreenshot('Eigenschaft Perlissimo-4515: ' + attributes[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
         }
@@ -91,12 +91,14 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         for (var i = 0; i < available_types.length; i++) {
             cy.get(available_types[i]).click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
             cy.get(available_types[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Plafond - Auswahl und Infobox: ' + available_types[i], {
+            cy.argosScreenshot('Sonderformen Plafond - Auswahl und Infobox ' + available_types[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
+
+            cy.clearPopup()
         }
 
         //Plisseetypen nicht erhältlich
@@ -117,8 +119,8 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
             cy.get(non_available_types[i]).click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
             cy.argosScreenshot('Sonderformen Plafond - Auswahl: ' + non_available_types[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
         }
@@ -128,7 +130,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         // select plk13 to make all befestigungen visible
         cy.get('#plk13').click({ force: true }).wait(500)
-        
+
         cy.clearPopup()
         cy.get('h3').contains('Befestigungstyp').click()  //the only way to make the last plk13-popup disappear
 
@@ -144,19 +146,19 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         for (var i = 0; i < befestigungen.length; i++) {
 
             cy.get('input' + befestigungen[i]).check({ force: true })
-            cy.argosScreenshot('Sonderformen Plafond Befestigung: ' + befestigungen[i], {
+            cy.argosScreenshot('Sonderformen Plafond Befestigung - ' + befestigungen[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
             cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Plafond Befestigung- Infobox: ' + befestigungen[i], {
+            cy.argosScreenshot('Sonderformen Plafond Befestigung- Infobox ' + befestigungen[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -178,19 +180,19 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         // select available schienenfarben and make snapshots
         for (var i = 0; i < schienenfarben.length; i++) {
             cy.get(schienenfarben[i]).click({ force: true }).wait(500)  //without this wait(500) does not disappear the last popup of SD3
-            cy.argosScreenshot('Sonderformen Plafond: Schienenfarbe ' + schienenfarben[i], {
+            cy.argosScreenshot('Sonderformen Plafond - Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
             //capture info popup
             cy.get(schienenfarben[i]).siblings('.tooltip_icon').realHover()
             cy.get(schienenfarben[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Plafond - Infobox: Schienenfarbe ' + schienenfarben[i], {
+            cy.argosScreenshot('Sonderformen Plafond - Infobox Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -202,7 +204,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         //select Bedienseite rechts
         cy.get('#rechts').check({ force: true }).wait(500)
-        cy.argosScreenshot('Sonderformen Plafond: Bedienseite rechts', {
+        cy.argosScreenshot('Sonderformen Plafond - Bedienseite rechts', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -211,7 +213,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         //select Bedienseite mitte
         cy.get('#mitte').check({ force: true })
-        cy.argosScreenshot('Sonderformen Plafond: Bedienseite mitte', {
+        cy.argosScreenshot('Sonderformen Plafond - Bedienseite mitte', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -220,7 +222,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         //select Bedienseite links
         cy.get('#links').check({ force: true })
-        cy.argosScreenshot('Sonderformen Plafond: Bedienseite links', {
+        cy.argosScreenshot('Sonderformen Plafond - Bedienseite links', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -230,7 +232,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         //capture info popup Bedienseite
         cy.contains(new RegExp("^" + 'Bedienseite' + "\\s*$")).next('.tooltip_icon').realHover()
         cy.contains(new RegExp("^" + 'Bedienseite' + "\\s*$")).siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Plafond - Infobox: Bedienseite', {
+        cy.argosScreenshot('Sonderformen Plafond - Infobox Bedienseite', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -243,7 +245,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         //select HANDKURBEL 
         cy.get('#kurbel').check({ force: true })
-        cy.argosScreenshot('Sonderformen Plafond: Bedienung Kurbel', {
+        cy.argosScreenshot('Sonderformen Plafond - Bedienung Kurbel', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -252,7 +254,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         //capture info popup
         cy.get('#kurbel').siblings('.tooltip_icon').realHover()
         cy.get('#kurbel').siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Plafond - Infobox: Bedienung Kurbel', {
+        cy.argosScreenshot('Sonderformen Plafond - Infobox Bedienung Kurbel', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -263,7 +265,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         // SELECT HANDKURBEL
         cy.get('#handkurbel_select').openSelect() //custom command in commands.js
-        cy.argosScreenshot('Sonderformen Plafond: Handkurbel', {
+        cy.argosScreenshot('Sonderformen Plafond - Handkurbel', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -275,7 +277,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         //select Elektrostab
         cy.get('#elektrostab').check({ force: true })
-        cy.argosScreenshot('Sonderformen Plafond: Bedienung Elektrostab', {
+        cy.argosScreenshot('Sonderformen Plafond - Bedienung Elektrostab', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -284,7 +286,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
         //capture info popup
         cy.get('#elektrostab').siblings('.tooltip_icon').realHover()
         cy.get('#elektrostab').siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Plafond - Infobox: Bedienung Elektrostab', {
+        cy.argosScreenshot('Sonderformen Plafond - Infobox Bedienung Elektrostab', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -295,7 +297,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Pla
 
         // SELECT Elektrostab
         cy.get('#elektrostab_select').openSelect() //custom command in commands.js
-        cy.argosScreenshot('Sonderformen Plafond: Elektrostab', {
+        cy.argosScreenshot('Sonderformen Plafond - Elektrostab', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly

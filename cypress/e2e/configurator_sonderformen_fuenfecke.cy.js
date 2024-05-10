@@ -8,18 +8,18 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         cy.visit('/pearl-light-4555');
         //load js files
         // cy.wait('@configurator-js-files')
-       cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
+        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
 
 
 
         //scroll to bottom with npm package to be sure that alls ressources are loaded
         cy.window().then(cyWindow => scrollToBottom({ remoteWindow: cyWindow }));
-        
-        
+
+
         //check if main image is visible
         cy.get('#image').should('be.visible')
-        
-        
+
+
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
             .should('have.length', 12)
@@ -34,7 +34,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
 
         //Auswahl Tab Sonderformen
         cy.contains('Sonderformen').click()
-        cy.argosScreenshot('Startseite: Sonderformen Pearl-Light-4555', {
+        cy.argosScreenshot('Startseite Sonderformen Pearl-Light-4555', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -59,10 +59,10 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
 
         for (var i = 0; i < attributes.length; i++) {
             cy.get('img[title=' + attributes[i] + ']').trigger('mouseover')
-            cy.argosScreenshot('Eigenschaft Pearl-Light-4555: ' + attributes[i], {
+            cy.argosScreenshot('Eigenschaft Pearl-Light-4555 - ' + attributes[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
         }
@@ -82,22 +82,26 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         // select VS5
         cy.get('#vs5').click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
         cy.get('#vs5').siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Fünfecke - Auswahl und Infobox: VS5', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Auswahl und Infobox VS5', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
             ]
         });
 
+        cy.clearPopup()
+
         // select VSSD
         cy.get('#vs5sd').click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
         cy.get('#vs5sd').siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Fünfecke - Auswahl und Infobox: VS5 SD', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Auswahl und Infobox VS5 SD', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
             ]
         });
+
+        cy.clearPopup()
 
 
         // *********************************** BEFESTIGUNGEN - AUSWAHL & INFOBOXES ***********************************
@@ -115,22 +119,22 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         for (var i = 0; i < befestigungen.length; i++) {
 
             // cy.get(befestigungen[i]).click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
-            // cy.argosScreenshot('Sonderformen Dreiecke - Auswahl und Infobox: ' + befestigungen[i])
+            // cy.argosScreenshot('Sonderformen Dreiecke - Auswahl und Infobox ' + befestigungen[i])
 
             cy.get('input' + befestigungen[i]).check({ force: true })
             cy.argosScreenshot('Sonderformen Fünfecke Befestigung: ' + befestigungen[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
             cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Fünfecke Befestigung- Infobox: ' + befestigungen[i], {
+            cy.argosScreenshot('Sonderformen Fünfecke Befestigung - Infobox ' + befestigungen[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -152,19 +156,19 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         // select available schienenfarben and make snapshots
         for (var i = 0; i < schienenfarben.length; i++) {
             cy.get(schienenfarben[i]).click({ force: true }).wait(500)  //without this wait(500) does not disappear the last popup of SD3
-            cy.argosScreenshot('Sonderformen Fünfecke: Schienenfarbe ' + schienenfarben[i], {
+            cy.argosScreenshot('Sonderformen Fünfecke - Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
             //capture info popup
             cy.get(schienenfarben[i]).siblings('.tooltip_icon').realHover()
             cy.get(schienenfarben[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Fünfecke - Infobox: Schienenfarbe ' + schienenfarben[i], {
+            cy.argosScreenshot('Sonderformen Fünfecke - Infobox Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -174,7 +178,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         // *********************************** BEDIENGRIFFE - AUSWAHL & INFOBOXES ***********************************
 
         //Standard preselected
-        cy.argosScreenshot('Sonderformen Fünfecke: Bediengriff Standard', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Bediengriff Standard', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -183,7 +187,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         //capture info popup
         cy.get('#standard').siblings('.tooltip_icon').realHover()
         cy.get('#standard').siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Fünfecke - Infobox: Bediengriffe Standard', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Infobox Bediengriffe Standard', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -194,7 +198,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
 
         //select Design
         cy.get('#design').check({ force: true })
-        cy.argosScreenshot('Sonderformen Fünfecke: Bediengriff Design', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Bediengriff Design', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -203,7 +207,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         //capture info popup
         cy.get('#design').siblings('.tooltip_icon').realHover()
         cy.get('#design').siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Fünfecke - Infobox: Bediengriffe Design', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Infobox Bediengriffe Design', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -216,7 +220,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         // *********************************** BEDIENSTAB-SELECT-FELD & INFOBOX ***********************************
 
         cy.get('#bedienstab_select').openSelect() //custom command in commands.js
-        cy.argosScreenshot('Sonderformen Fünfecke: Bedienstäbe', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Bedienstäbe', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -226,11 +230,13 @@ describe('Integration test with visual testing - configurator Sonderformen - Fü
         //capture info popup
         cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.tooltip_icon').realHover()
         cy.contains('Optionaler Bedienstab für besonders hohe Fenster').siblings('.option_item_tooltip').children('img').should('be.visible')
-        cy.argosScreenshot('Sonderformen Fünfecke - Infobox: Bedienstab', {
+        cy.argosScreenshot('Sonderformen Fünfecke - Infobox Bedienstab', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
             ]
         });
+
+        cy.clearPopup()
     })
 })

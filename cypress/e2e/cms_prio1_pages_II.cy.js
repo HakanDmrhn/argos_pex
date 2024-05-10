@@ -16,8 +16,8 @@ describe('Integration test with visual testing - cms prio1 pages without freshch
 
             cy.argosScreenshot(link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
         });

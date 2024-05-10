@@ -53,7 +53,7 @@ module.exports = {
         setBillingData(data.prefix, data.first_name, data.last_name, data.email, data.street, data.postal_code, data.city, data.phone, data.state)
         // check if FreshChat icon is loaded
         cy.checkFreshChat()
-        cy.argosScreenshot('checkout: Rechnungsinformation', {
+        cy.argosScreenshot('checkout - Rechnungsinformation', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -73,7 +73,7 @@ module.exports = {
         setShippingData(data.prefix2, data.first_name2, data.last_name2, data.street2, data.postal_code2, data.city2, data.phone2, data.state2)
         // check if FreshChat icon is loaded
         cy.checkFreshChat()
-        cy.argosScreenshot('checkout: Versandinformation', {
+        cy.argosScreenshot('checkout-  Versandinformation', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -91,7 +91,7 @@ module.exports = {
         // check if FreshChat icon is loaded
         cy.checkFreshChat()
         // take snapshot of checkout: Versandart
-        cy.argosScreenshot('checkout: Versandart', {
+        cy.argosScreenshot('checkout - Versandart', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -109,7 +109,7 @@ module.exports = {
         // check if FreshChat icon is loaded
         cy.checkFreshChat()
         // take snapshot of checkout: Zahlungsinformation
-        cy.argosScreenshot('checkout: Zahlungsinformation', {
+        cy.argosScreenshot('checkout - Zahlungsinformation', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -128,7 +128,7 @@ module.exports = {
         cy.checkFreshChat()
 
         //take snapshot of checkout: Bestellübersicht
-        cy.argosScreenshot('checkout: Bestellübersicht', {
+        cy.argosScreenshot('checkout - Bestellübersicht', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly

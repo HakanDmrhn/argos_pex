@@ -33,7 +33,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
 
         //Auswahl Tab Sonderformen
         cy.contains('Sonderformen').click()
-        cy.argosScreenshot('Startseite: Sonderformen - mit Blackout 4018', {
+        cy.argosScreenshot('Startseite Sonderformen - mit Blackout 4018', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -57,10 +57,10 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
 
         for (var i = 0; i < attributes.length; i++) {
             cy.get('img[title=' + attributes[i] + ']').trigger('mouseover')
-            cy.argosScreenshot('Eigenschaft Blackout-4018: ' + attributes[i], {
+            cy.argosScreenshot('Eigenschaft Blackout-4018 - ' + attributes[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
         }
@@ -71,7 +71,7 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
 
         //select Dreiecke
         cy.get('#triangle').click({ force: true })
-        cy.argosScreenshot('Fensterform: Dreiecke', {
+        cy.argosScreenshot('Fensterform - Dreiecke', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -92,10 +92,10 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
         for (var i = 0; i < types.length; i++) {
             cy.get(types[i]).click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
             cy.get(types[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Dreiecke - Auswahl und Infobox: ' + types[i], {
+            cy.argosScreenshot('Sonderformen Dreiecke - Auswahl und Infobox ' + types[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
         }
@@ -121,22 +121,22 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
         for (var i = 0; i < befestigungen.length; i++) {
 
             // cy.get(befestigungen[i]).click({ force: true }).wait(500)  //interception '@prices' or workaround cy.clearPopup() do not work
-            // cy.argosScreenshot('Sonderformen Dreiecke - Auswahl und Infobox: ' + befestigungen[i])
+            // cy.argosScreenshot('Sonderformen Dreiecke - Auswahl und Infobox ' + befestigungen[i])
 
             cy.get('input' + befestigungen[i]).check({ force: true })
-            cy.argosScreenshot('Sonderformen Dreiecke Befestigung: ' + befestigungen[i], {
+            cy.argosScreenshot('Sonderformen Dreiecke Befestigung - ' + befestigungen[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
             //capture info popup
             cy.get(befestigungen[i]).siblings('.tooltip_icon').realHover()
             cy.get(befestigungen[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Dreiecke Befestigung- Infobox: ' + befestigungen[i], {
+            cy.argosScreenshot('Sonderformen Dreiecke Befestigung- Infobox ' + befestigungen[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -158,19 +158,19 @@ describe('Integration test with visual testing - configurator Sonderformen - Dre
         // select available schienenfarben and make snapshots
         for (var i = 0; i < schienenfarben.length; i++) {
             cy.get(schienenfarben[i]).click({ force: true }).wait(500)  //without this wait(500) does not disappear the last popup of SD3
-            cy.argosScreenshot('Sonderformen Dreiecke: Schienenfarbe ' + schienenfarben[i], {
+            cy.argosScreenshot('Sonderformen Dreiecke - Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
             //capture info popup
             cy.get(schienenfarben[i]).siblings('.tooltip_icon').realHover()
             cy.get(schienenfarben[i]).siblings('.option_item_tooltip').children('img').should('be.visible')
-            cy.argosScreenshot('Sonderformen Dreiecke - Infobox: Schienenfarbe ' + schienenfarben[i], {
+            cy.argosScreenshot('Sonderformen Dreiecke - Infobox Schienenfarbe ' + schienenfarben[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 

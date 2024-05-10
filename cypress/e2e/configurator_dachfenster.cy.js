@@ -34,7 +34,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
 
         //Auswahl Tab Dachfenster
         cy.contains('Dachfenster').click()
-        cy.argosScreenshot('Startseite: Dachfenster mit Wabe Ultima 4804', {
+        cy.argosScreenshot('Startseite Dachfenster mit Wabe Ultima 4804', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -66,8 +66,8 @@ describe('Integration test with visual testing - configurator Dachfenster', func
             cy.get('img[title=' + attributes[i] + ']').trigger('mouseover')
             cy.argosScreenshot('Eigenschaft Wabe Ultima-4804: ' + attributes[i], {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
         }

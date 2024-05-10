@@ -29,8 +29,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#image').click()
             cy.argosScreenshot('1st popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -38,8 +38,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#img-popup-next').click()
             cy.argosScreenshot('2nd popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -47,8 +47,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#img-popup-next').click()
             cy.argosScreenshot('3rd popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -56,8 +56,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#img-popup-next').click()
             cy.argosScreenshot('4th popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -65,8 +65,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#img-popup-next').click()
             cy.argosScreenshot('5th popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -78,8 +78,10 @@ describe('Integration test with visual testing - image popups', function () {
         zubehoer_pages.forEach(function (link) {
 
             cy.visit(link)
+
             // load js files
             // cy.wait('@configurator-js-files')
+
             // check if main image is visible
             cy.get('#image').should('be.visible')
             // check if all gallery pictures are visible yet
@@ -90,14 +92,16 @@ describe('Integration test with visual testing - image popups', function () {
                         cy.wrap($img).should('be.visible')
                     })
                 })
+
             // check if FreshChat icon is visible
             cy.checkFreshChat()
+
             // take snapshot of first image
             cy.get('#image').click()
             cy.argosScreenshot('1st popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -105,8 +109,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#img-popup-next').click()
             cy.argosScreenshot('2nd popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -114,8 +118,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#img-popup-next').click()
             cy.argosScreenshot('3rd popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
@@ -123,8 +127,8 @@ describe('Integration test with visual testing - image popups', function () {
             cy.get('#img-popup-next').click()
             cy.argosScreenshot('4th popup image of ' + link, {
                 viewports: [
-                    "iphone-6", // Use device preset for iphone-6
-                    { width: 1280, height: 1024 }, // Specify dimensions directly
+                    "iphone-6", // Use device preset for iphone-6 --> 375x667
+                    "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
                 ]
             });
 
