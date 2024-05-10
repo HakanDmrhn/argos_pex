@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Cypress Tests - PEX
 
 on:
   workflow_dispatch: # Manually trigger the workflow
