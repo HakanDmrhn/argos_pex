@@ -20,6 +20,7 @@
 
 import "@argos-ci/cypress/support";
 import "cypress-real-events";
+require('dotenv').config();
 
 
 beforeEach(() => {
@@ -31,11 +32,12 @@ beforeEach(() => {
     })
   }
 
-  cy.intercept({
-    method: 'GET',
-    url: Cypress.env('js_files_url'),
-    hostname: Cypress.env('js_files_hostname'),
-  }).as('configurator-js-files')
+  // cy.intercept({
+  //   method: 'GET',
+  //   url: process.env.JS_FILES,
+  //   hostname: process.env.JS_FILES_HOSTNAME,
+  // }).as('configurator-js-files')
+  // we don't wait for the js-files, we wait for correct prices instead
 
 })
 
