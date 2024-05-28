@@ -1,7 +1,8 @@
 {
   "devDependencies": {
     "@argos-ci/cypress": "^2.0.1",
-    "cypress": "^13.8.1"
+    "cypress": "^13.8.1",
+    "dotenv": "^16.4.5"
   },
   "name": "argos_test",
   "version": "1.0.0",
