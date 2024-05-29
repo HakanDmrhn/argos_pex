@@ -11,7 +11,7 @@ module.exports = defineConfig({
   // setupNodeEvents can also be defined in "component"
   e2e: {
     // baseUrl: process.env.BASE_URL,
-    baseUrl: process.env.ARGOS_TOKEN,
+    baseUrl: process.env.BASE_URL,
     async setupNodeEvents(on, config) {
       registerArgosTask(on, config, {
         // Enable upload to Argos only when it runs on CI.
