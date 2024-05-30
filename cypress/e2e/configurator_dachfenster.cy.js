@@ -3,10 +3,10 @@ let scrollToBottom = require("scroll-to-bottomjs");
 
 describe('Integration test with visual testing - configurator Dachfenster', function () {
 
-    it('load configurator Dachfenster with Wabe Ultima-4804', function () {
+    it('load configurator Dachfenster with Meran 5075', function () {
 
         //load PDP page
-        cy.visit('/wabe-ultima-4804');
+        cy.visit('/meran-5075');
         //load js files
         // cy.wait('@configurator-js-files')
        cy.get('.price_amount > .product_prices > .price .final_price').should('not.contain', '-5,00').and('not.contain', '-2,50')
@@ -22,7 +22,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
 
         //check if all gallery pictures are visible yet
         cy.get('.small_gallery > ul li')
-            .should('have.length', 13)
+            .should('have.length', 10)
             .each(($li) => { // iterate through each 'li'
                 cy.wrap($li).children().each(($img) => { // iterate through each child of li --> img
                     cy.wrap($img).should('be.visible')
@@ -34,7 +34,7 @@ describe('Integration test with visual testing - configurator Dachfenster', func
 
         //Auswahl Tab Dachfenster
         cy.contains('Dachfenster').click()
-        cy.argosScreenshot('Startseite Dachfenster mit Wabe Ultima 4804', {
+        cy.argosScreenshot('Startseite Dachfenster mit Meran 5075', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
@@ -51,20 +51,18 @@ describe('Integration test with visual testing - configurator Dachfenster', func
 
         //Stoffeinegnschaften
         var attributes = [
-            "\"Abdunkelnd\"",
-            "\"Wabenplissee\"",
-            "\"Geeignet für Bildschirmarbeitsplätze\"",
-            "\"Schallreduzierend\"",
-            "\"Plissee mit weißer Rückseite\"",
-            "\"Öko-Tex Standard 100 zertifiziert (schadstoffgeprüft)\"",
+            "\"Blickdicht & Lichtdurchlässig\"",
+            "\"Perlex Beschichtung\"",
+            "\"schwer entflammbar nach DIN 4102-B1\"",
             "\"Geeignet für Feuchträume\"",
+            "\"Reinigung per Handwäsche\"",
             "\"1-2 Tage Maßanfertigung\"",
             "\"Hergestellt in Deutschland\""
         ]
 
         for (var i = 0; i < attributes.length; i++) {
             cy.get('img[title=' + attributes[i] + ']').trigger('mouseover')
-            cy.argosScreenshot('Eigenschaft Wabe Ultima-4804: ' + attributes[i], {
+            cy.argosScreenshot('Eigenschaft Meran 5075: ' + attributes[i], {
                 viewports: [
                     "iphone-6", // Use device preset for iphone-6 --> 375x667
                     "macbook-16", // Use device preset for macbook-16 --> 1536 x 960
@@ -178,9 +176,9 @@ describe('Integration test with visual testing - configurator Dachfenster', func
         //select DF20 to make Bediengriff visible
         cy.get('input#df20').check({ force: true })
 
-        //wait for DF20  prices before next snapshot since cypress is too fast at this point
-        cy.get('.original_price').should('contain', '151,00') // 146 + 5
-        cy.get('.final_price').should('contain', '114,50')  // R 5,18 151,00 -5,00 -25% +5,00= 114,50
+        //wait for DF20  prices before next snapshot since cypress is too fast at this point --> workaround 
+        cy.get('.original_price').should('contain', '112,00') // 107 + 5
+        cy.get('.final_price').should('contain', '69,20')  // R 5,7 112,00 -5,00 -40% +5,00= 69,20
 
         //capture infoboxes of Bediengriff Standard and Design
         // --> Standard
@@ -211,8 +209,8 @@ describe('Integration test with visual testing - configurator Dachfenster', func
         cy.get('input#df20c').check({ force: true })
 
         //wait for DF20 C prices before next snapshot since cypress is too fast at this point
-        cy.get('.original_price').should('contain', '179,00')
-        cy.get('.final_price').should('contain', '135,50') // R 5,18 179,00 -5,00 -25% +5,00= 114,50
+        cy.get('.original_price').should('contain', '135,00')
+        cy.get('.final_price').should('contain', '83,00') // R 5,7 135,00 -5,00 -40% +5,00= 83
 
         //capture infoboxes Schienenfarbe weiß and grau
         // --> weiß
