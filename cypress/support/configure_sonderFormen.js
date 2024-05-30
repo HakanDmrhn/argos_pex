@@ -13,7 +13,7 @@ module.exports = {
         cy.contains('Sonderformen').click()
 
         //load js files
-        cy.wait('@configurator-js-files')
+        // cy.wait('@configurator-js-files')
 
         // Fensterform wählen
         cy.get('#triangle').click({ force: true })
