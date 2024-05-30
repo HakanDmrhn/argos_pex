@@ -71,7 +71,7 @@ describe('Integration test with visual testing - configurator Senkrechte Fenster
 
         //VS2 preselected - select vs1
         cy.get('#vs1').click({ force: true })
-        cy.argosScreenshot('', {
+        cy.argosScreenshot('VS1 selected', {
             viewports: [
                 "iphone-6", // Use device preset for iphone-6
                 { width: 1280, height: 1024 }, // Specify dimensions directly
