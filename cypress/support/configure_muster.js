@@ -6,7 +6,7 @@ module.exports = {
         // ---------------------------------------------------------------------------------
 
         // load product detail page
-        cy.visit('/rovereto-1137')
+        cy.visit('/rovereto-5098')
 
         // add sample to cart
         cy.contains('Gratis Stoffmuster bestellen').click()
