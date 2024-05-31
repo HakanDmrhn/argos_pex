@@ -4,13 +4,12 @@ require('dotenv').config();
 
 module.exports = defineConfig({
   defaultCommandTimeout: 30000,
+  requestTimeout: 15000,
   responseTimeout: 60000,
   chromeWebSecurity: false,
   redirectionLimit: 100,
-  userAgent: 'testing_agent',
-  // setupNodeEvents can also be defined in "component"
+  userAgent: 'testing_agent_visual',
   e2e: {
-    // baseUrl: process.env.BASE_URL,
     baseUrl: process.env.BASE_URL,
     async setupNodeEvents(on, config) {
       registerArgosTask(on, config, {
