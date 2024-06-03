@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@argos-ci/cypress": "^2.0.1",
+    "@argos-ci/cypress": "^2.0.3",
     "cypress": "^13.8.1",
     "dotenv": "^16.4.5"
   },
